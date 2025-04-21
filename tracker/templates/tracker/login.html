@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login | DietTrack</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #0b0b39;
+    }
+
+    form {
+      width: 100%;
+      max-width: 450px;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      color: #f0f0f0;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      color: #fff;
+      width: 100%;
+    }
+
+    .form-control::placeholder {
+      color: #ddd;
+    }
+
+    .btn-primary {
+      background: #0b0b39;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      width: 100%;
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d1d52;
+      transform: translateY(-3px);
+    }
+
+    .alert {
+      border-radius: 8px;
+      font-size: 0.95rem;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .alert-danger {
+      background: #ff6b6b;
+      border: none;
+      color: #fff;
+    }
+
+    .alert-success {
+      background: #51cf66;
+      border: none;
+      color: #fff;
+    }
+
+    .bottom-link {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #f0f0f0;
+    }
+
+    .bottom-link a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .bottom-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Welcome Back 👋</h1>
+
+  {% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+  {% if success %}
+  <div class="alert alert-success">{{ success }}</div>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="username" class="form-label">Username or Email</label>
+      <input type="text" class="form-control" id="username" name="username" required placeholder="e.g. johndoe">
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" required placeholder="••••••••">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Log In</button>
+
+    <div class="bottom-link">
+      Don't have an account? <a href="{% url 'userprofile_register' %}">Register</a>
+    </div>
+  </form>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

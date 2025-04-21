@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Register | DietTrack</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 40px 30px;
+      max-width: 500px;
+      width: 100%;
+      color: #f0f0f0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #f0f0f0;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      color: #fff;
+    }
+
+    .form-control::placeholder {
+      color: #ddd;
+    }
+
+    .btn-primary {
+      background: #0b0b39;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      width: 100%;
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d1d52;
+      transform: translateY(-3px);
+    }
+
+    .alert {
+      border-radius: 8px;
+      font-size: 0.95rem;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .alert-danger {
+      background: #ff6b6b;
+      border: none;
+      color: #fff;
+    }
+
+    .alert-success {
+      background: #51cf66;
+      border: none;
+      color: #fff;
+    }
+
+    .bottom-link {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #f0f0f0;
+      text-align: center;
+    }
+
+    .bottom-link a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .bottom-link a:hover {
+      text-decoration: underline;
+    }
+
+    .form-title {
+      color: #0b0b39;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      padding-top: 1px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #confirmPasswordHelp {
+      color: #ff6b6b;
+      margin-top: 6px;
+      display: none;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <h2 class="form-title">Create Your Profile</h2>
+
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" name="uname" class="form-control" required placeholder="e.g. johndoe">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" required placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required placeholder="••••••••">
+        <div id="passwordHelp" style="color: white; margin-top: 6px;"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required
+          placeholder="••••••••">
+        <div id="confirmPasswordHelp">Passwords do not match.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Age</label>
+        <input type="number" name="age" class="form-control" min="1" max="120" required placeholder="e.g. 25">
+      </div>
+
+
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <div class="bottom-link">
+      Already have an account? <a href="{% url 'userprofile_login' %}">Log In</a>
+    </div>
+  </div>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+    const passwordHelp = document.getElementById("passwordHelp");
+    const form = document.querySelector("form");
+    const username = document.querySelector("input[name='uname']");
+    const email = document.querySelector("input[name='email']");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm_password");
+    const age = document.querySelector("input[name='age']");
+    const confirmPasswordHelp = document.getElementById("confirmPasswordHelp");
+
+    confirmPassword.addEventListener("input", () => {
+      if (confirmPassword.value !== password.value) {
+        confirmPasswordHelp.style.display = "block";
+      } else {
+        confirmPasswordHelp.style.display = "none";
+      }
+    });
+
+    // Also update password listener so changing the main password resets check too
+    password.addEventListener("input", () => {
+      const val = password.value;
+      let strength = "Weak";
+      if (val.length > 8 && /[A-Z]/.test(val) && /\d/.test(val)) {
+        strength = "Strong 💪";
+      } else if (val.length >= 6) {
+        strength = "Moderate ⚠️";
+      }
+      passwordHelp.textContent = `Password strength: ${strength}`;
+
+      // Re-validate confirm password on main password change
+      if (confirmPassword.value !== "" && confirmPassword.value !== password.value) {
+        confirmPasswordHelp.style.display = "block";
+      } else {
+        confirmPasswordHelp.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+
+</html>

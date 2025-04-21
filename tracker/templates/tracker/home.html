@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 220px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Important: separates top and bottom */
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar a.active {
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+
+        .top-links,
+        .bottom-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        h2,
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input,
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: #000;
+        }
+
+        button {
+            background: #1fa2ff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #1480d4;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .status-ontrack {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .status-offtrack {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        ul li {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="top-links">
+            <a href="{% url 'home' %}"
+                class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">🏠Home</a>
+            <a href="{% url 'dashboard' %}"
+                class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
+            <a href="{% url 'report' %}"
+                class="{% if request.resolver_match.url_name == 'report' %}active{% endif %}">📑 Report</a>
+        </div>
+        <hr style="border: 1px solid rgba(255, 255, 255, 0.2); margin: 30px 0; margin-top: 380px;">
+
+        <div class="bottom-links">
+            <a href="{% url 'edit_profile' %}"
+                class="{% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}">✏️ Edit Profile</a>
+            <a href="{% url 'change_password' %}"
+                class="{% if request.resolver_match.url_name == 'change_password' %}active{% endif %}">🔐 Change
+                Password</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="card">
+            <h2>Welcome to Our Project</h2>
+            <p>Our project is dedicated to providing a smart solution for tracking dietary intake and improving health.
+                By helping users manage their food consumption and monitor key health metrics like liver condition, we
+                aim to guide individuals toward healthier lifestyle choices. The app offers personalized diet plans
+                tailored to each user’s preferences and medical condition, ensuring they receive relevant, actionable
+                advice.</p>
+            <p> With features like real-time food logging, health condition analysis using OCR technology, and progress
+                tracking, our app empowers users to take control of their health. Whether you're aiming to improve liver
+                function or just eat better, our app provides the tools to support your wellness journey and make
+                informed decisions about your diet.</p>
+
+            <h3>Why This Project Matters</h3>
+            <p>With the increasing importance of health and wellness in today's world, we aim to empower individuals to
+                make informed decisions about their diet. By leveraging the power of OCR and AI, we analyze users'
+                health reports and provide tailored advice that could significantly improve their wellbeing. The
+                integration of real-time dietary tracking and motivational support ensures that users stay on track with
+                their health goals.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li>OCR-based fatty acid analysis for liver condition stages.</li>
+                <li>Personalized diet plans based on preferences and health condition.</li>
+                <li>Daily food intake logging with calorie tracking.</li>
+                <li>Real-time progress tracking and health insights based on dietary intake.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

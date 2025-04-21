@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to DietTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 50px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      width: 100%;
+      backdrop-filter: blur(15px);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #0b0b39;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      color: #f0f0f0;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 32px;
+      background: #0b0b39;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      background: #1d1d52;
+      transform: translateY(-3px);
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 12px 26px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body style="
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+">
+  <h1 style="font-size: 3rem; margin-bottom: 20px;">Welcome to DietTrack 👋</h1>
+  <p style="font-size: 1.2rem; margin-bottom: 40px; max-width: 700px; line-height: 1.6;">
+    Your personal health companion. Track your diet, analyze your fatty acid reports, and get personalized plans based on your liver condition. Stay healthy, stay motivated — one day at a time!
+  </p>
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <a href="{% url 'userprofile_login' %}" style="
+      padding: 14px 32px;
+      background: #0b0b39;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;">Sign In</a>
+    <a href="{% url 'userprofile_register' %}" style="
+      padding: 14px 32px;
+      background: #0b0b39;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;">Sign Up</a>
+  </div>
+</body>
+
+</html>
