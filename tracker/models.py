@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 ALLERGY_CHOICES = [
         ('Dairy', 'Dairy'),
-        ('Gluten', 'Gluten'),
         ('Nuts', 'Nuts'),
         ('None', 'None'),
     ]
