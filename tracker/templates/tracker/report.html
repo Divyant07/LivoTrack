@@ -226,21 +226,19 @@
 <body>
     <div class="sidebar">
         <div class="top-links">
-            <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">🏠Home</a>
-            <a href="{% url 'dashboard' %}"
-                class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
-            <a href="{% url 'report' %}"
-                class="{% if request.resolver_match.url_name == 'report' %}active{% endif %}">📑 Report</a>
+            <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">🏠 Home</a>
+            <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
+            <a href="{% url 'report' %}" class="{% if request.resolver_match.url_name == 'report' %}active{% endif %}">📑 Report</a>
         </div>
-        <hr style="border: 1px solid rgba(255, 255, 255, 0.2); margin: 30px 0; margin-top: 380px;">
-
+    
+        <hr style="border: 1px solid rgba(255, 255, 255, 0.2); margin: 30px 0; margin-top: 320px;">
+    
         <div class="bottom-links">
-            <a href="{% url 'edit_profile' %}"
-                class="{% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}">✏️ Edit Profile</a>
-            <a href="{% url 'change_password' %}"
-                class="{% if request.resolver_match.url_name == 'change_password' %}active{% endif %}">🔐 Change Password</a>
+            <a href="{% url 'edit_profile' %}" class="{% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}">✏️ Edit Profile</a>
+            <a href="{% url 'change_password' %}" class="{% if request.resolver_match.url_name == 'change_password' %}active{% endif %}">🔐 Change Password</a>
+            <a href="{% url 'logout' %}" class="{% if request.resolver_match.url_name == 'logout' %}active{% endif %}">🚪 Logout</a>
         </div>
-    </div>
+    </div>  
 
     <div class="main-content">
         {% if is_new_day %}

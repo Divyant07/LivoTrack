@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import userprofile_register, user_login, dashboard, onboarding,welcome_page, edit_profile, change_password, home, report_view, reset_daily_data
+from .views import userprofile_register, user_login, dashboard, onboarding,welcome_page, edit_profile, change_password, home, report_view, reset_daily_data, logout
 
 urlpatterns = [
     path('', welcome_page, name='welcome_page'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('report/', report_view, name='report'),
     path('reset-daily-data/', reset_daily_data, name='reset_daily_data'),
+    path('logout/', logout, name='logout'),
 ]

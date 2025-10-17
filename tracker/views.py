@@ -7,7 +7,7 @@ from .models import UserProfile, ALLERGY_CHOICES
 from PIL import Image
 from .utils import extract_values_from_image, analyze_liver_stage
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout as auth_logout
 from datetime import datetime, date
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -364,4 +364,8 @@ def check_daily_reset(request):
         return JsonResponse({
             'error': str(e)
         }, status=400)
+    
+def logout(request):
+    auth_logout(request)
+    return redirect('userprofile_login')
     
